@@ -30,7 +30,8 @@
     "typescript": "5.2.2"
   },
   "devDependencies": {
-    "@types/next": "^8.0.7"
+    "@types/next": "^8.0.7",
+    "autoprefixer": "^10.4.20"
   },
   "engines": {
     "node": "22.x"
