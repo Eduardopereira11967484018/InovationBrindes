@@ -38,33 +38,41 @@ export function CartSheet() {
           ) : (
             state.items.map((item) => (
               <div key={item.codigo_produto} className="flex gap-4 py-4 border-b">
+                {/* Imagem do produto */}
                 <img
                   src={item.imagem_produto}
                   alt={item.nome}
-                  className="h-20 w-20 object-cover rounded"
+                  className="h-20 w-20 object-cover rounded-md" // Garantindo que a imagem seja bem apresentada
                 />
                 <div className="flex-1">
                   <h3 className="font-medium">{item.nome}</h3>
                   <div className="flex items-center gap-2 mt-2">
+                    {/* Botão para diminuir a quantidade */}
                     <Button
                       variant="outline"
                       size="icon"
                       onClick={() => updateQuantity(item.codigo_produto, item.quantity - 1)}
+                      className="p-2"
                     >
                       <Minus className="h-4 w-4" />
                     </Button>
-                    <span>{item.quantity}</span>
+                    {/* Quantidade do item */}
+                    <span className="text-lg font-semibold">{item.quantity}</span>
+                    {/* Botão para aumentar a quantidade */}
                     <Button
                       variant="outline"
                       size="icon"
                       onClick={() => updateQuantity(item.codigo_produto, item.quantity + 1)}
+                      className="p-2"
                     >
                       <Plus className="h-4 w-4" />
                     </Button>
+                    {/* Botão para remover o item */}
                     <Button
                       variant="destructive"
                       size="icon"
                       onClick={() => dispatch({ type: 'REMOVE_ITEM', payload: item.codigo_produto })}
+                      className="p-2"
                     >
                       <Trash2 className="h-4 w-4" />
                     </Button>

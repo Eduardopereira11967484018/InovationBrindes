@@ -21,7 +21,7 @@ export default function RootLayout({
       <body className={inter.className}>
         <CartProvider>
           <div className="min-h-screen">
-            <header className="border-b">
+            <header className="bg-green-300 border-b" >
               <div className="container mx-auto px-4 py-4 flex justify-between items-center">
                 <h1 className="text-xl font-bold">Innovation Brindes</h1>
                 <CartSheet />

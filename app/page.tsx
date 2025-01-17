@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { Product } from "@/lib/types";
 import { ProductCard } from "../components/ui/product-card";
 
+
 export default function Home() {
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
@@ -35,9 +36,9 @@ export default function Home() {
   }
 
   return (
-    <main className="container mx-auto px-4 py-8">
+    <main className="container mx-auto px-4 py-4">
       <h2 className="text-2xl font-bold mb-6">Our Products</h2>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-1 xl:grid-cols-1 gap-6">
         {products.map((product) => (
           <ProductCard key={product.codigo_produto} product={product} />
         ))}
