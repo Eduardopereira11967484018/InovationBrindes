@@ -1,5 +1,5 @@
 import React from 'react';
-import { useCart } from '../hooks/useCart';
+import useCart from '../hooks/useCart';
 import { ProductType } from '../types';
 
 interface ProductProps {
@@ -10,7 +10,7 @@ const Product: React.FC<ProductProps> = ({ product }) => {
   const { addToCart } = useCart();
 
   const handleAddToCart = () => {
-    addToCart(product);
+    addToCart({ ...product, id: product.id.toString(), quantity: 1 });
   };
 
   return (

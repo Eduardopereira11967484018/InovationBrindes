@@ -6,6 +6,7 @@ import { Button } from './button';
 import { useCart } from '@/context/CartContext';
 import { ShoppingCart, ChevronLeft, ChevronRight } from 'lucide-react';
 import { useState } from 'react';
+import Image from 'next/image';
 
 interface ProductCardProps {
   product: Product;
@@ -35,10 +36,12 @@ export function ProductCard({ product }: ProductCardProps) {
   return (
     <Card className="max-w-lg lg:max-w-2xl w-full overflow-hidden shadow-lg">
       <div className="aspect-[4/3] relative group">
-        <img
+        <Image
           src={allImages[currentImageIndex].url}
           alt={allImages[currentImageIndex].alt_image || product.nome}
-          className="object-cover w-full h-full transition-transform duration-300 group-hover:scale-105"
+          layout="fill"
+          objectFit="cover"
+          className="transition-transform duration-300 group-hover:scale-105"
         />
   
         {/* Navegação de Imagem */}

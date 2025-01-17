@@ -1,5 +1,8 @@
 "use client";
 
+import Image from 'next/image';
+
+
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
 import { Button } from '@/components/ui/button';
 import { useCart } from '@/context/CartContext';
@@ -38,12 +41,14 @@ export function CartSheet() {
           ) : (
             state.items.map((item) => (
               <div key={item.codigo_produto} className="flex gap-4 py-4 border-b">
-                {/* Imagem do produto */}
-                <img
+                <Image
                   src={item.imagem_produto}
                   alt={item.nome}
-                  className="h-20 w-20 object-cover rounded-md" // Garantindo que a imagem seja bem apresentada
+                  width={80}
+                  height={80}
+                  className="object-cover rounded-md" // Garantindo que a imagem seja bem apresentada
                 />
+                
                 <div className="flex-1">
                   <h3 className="font-medium">{item.nome}</h3>
                   <div className="flex items-center gap-2 mt-2">

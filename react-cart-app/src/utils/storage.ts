@@ -1,12 +1,14 @@
-export const saveCartToLocalStorage = (cart) => {
-  localStorage.setItem('cart', JSON.stringify(cart));
+export const getCartFromStorage = () => {
+  const storedCart = localStorage.getItem('cart');
+  return storedCart ? JSON.parse(storedCart) : { items: [], totalAmount: 0 };
 };
 
-export const getCartFromLocalStorage = () => {
-  const cart = localStorage.getItem('cart');
-  return cart ? JSON.parse(cart) : [];
+interface CartState {
+  items: any[];
+  totalAmount: number;
+}
+
+export const saveCartToStorage = (state: CartState) => {
+  localStorage.setItem('cart', JSON.stringify(state));
 };
 
-export const clearCartFromLocalStorage = () => {
-  localStorage.removeItem('cart');
-};

@@ -8,7 +8,7 @@ const App = () => {
     <CartProvider>
       <div>
         <h1>Loja de Produtos</h1>
-        <Product />
+        <Product product={{ id: 1, name: 'Sample Product', price: 100 }} />
         <Cart />
       </div>
     </CartProvider>

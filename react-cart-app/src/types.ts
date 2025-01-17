@@ -1,16 +1,30 @@
-export interface CartItem {
+export interface Item {
   id: string;
   name: string;
   price: number;
+  // outras propriedades que Item pode ter
+}
+
+export interface CartItem extends Item {
   quantity: number;
 }
 
 export interface CartState {
   items: CartItem[];
-  total: number;
+  totalAmount: number;
 }
 
-export type CartAction =
-  | { type: 'ADD_ITEM'; payload: CartItem }
-  | { type: 'REMOVE_ITEM'; payload: string }
-  | { type: 'CLEAR_CART' };
+export interface CartContextType {
+  cart: CartState;
+  addToCart: (item: CartItem) => void;
+  removeFromCart: (id: string) => void;
+}
+export interface ProductType {
+
+  id: number;
+
+  name: string;
+
+  price: number;
+
+}
