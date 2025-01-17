@@ -1,44 +1,29 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Card } from "@/components/ui/card";
-import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
-import { Badge } from "@/components/ui/badge";
-import { Package2 } from "lucide-react";
-
-interface ProductImage {
-  url: string;
-  alt_image: string;
-  id: number;
-}
-
-interface ProductData {
-  nome: string;
-  descricao: string;
-  caracteristicas: string;
-  dimensoes: string;
-  img_produtos: ProductImage[];
-  img_home_produto: string;
-}
+import { Product } from "@/lib/types";
+import { ProductCard } from "../components/ui/product-card";
 
 export default function Home() {
-  const [product, setProduct] = useState<ProductData | null>(null);
+  const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const fetchProduct = async () => {
+    const fetchProducts = async () => {
       try {
         const response = await fetch("https://apihomolog.innovationbrindes.com.br/api/site/v2/produto/2484");
         const data = await response.json();
-        setProduct(data);
+        // For demonstration, we'll create an array with the single product
+        // In a real app, you'd fetch multiple products
+        setProducts([data]);
       } catch (error) {
-        console.error("Error fetching product:", error);
+        console.error("Error fetching products:", error);
       } finally {
         setLoading(false);
       }
     };
 
-    fetchProduct();
+    fetchProducts();
   }, []);
 
   if (loading) {
@@ -49,59 +34,13 @@ export default function Home() {
     );
   }
 
-  if (!product) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <p className="text-lg text-muted-foreground">Product not found</p>
-      </div>
-    );
-  }
-
   return (
     <main className="container mx-auto px-4 py-8">
-      <div className="grid md:grid-cols-2 gap-8">
-        <div className="space-y-4">
-          <Carousel className="w-full">
-            <CarouselContent>
-              {product.img_produtos.map((image) => (
-                <CarouselItem key={image.id}>
-                  <div className="relative aspect-square">
-                    <img
-                      src={image.url}
-                      alt={image.alt_image}
-                      className="rounded-lg object-cover w-full h-full"
-                    />
-                  </div>
-                  <p className="mt-2 text-sm text-muted-foreground text-center">
-                    {image.alt_image}
-                  </p>
-                </CarouselItem>
-              ))}
-            </CarouselContent>
-            <CarouselPrevious />
-            <CarouselNext />
-          </Carousel>
-        </div>
-
-        <div className="space-y-6">
-          <div>
-            <h1 className="text-3xl font-bold">{product.nome}</h1>
-            <Badge variant="secondary" className="mt-2">
-              <Package2 className="mr-1 h-3 w-3" />
-              {product.dimensoes}
-            </Badge>
-          </div>
-
-          <Card className="p-6">
-            <h2 className="text-xl font-semibold mb-3">Descrição</h2>
-            <p className="text-muted-foreground">{product.descricao}</p>
-          </Card>
-
-          <Card className="p-6">
-            <h2 className="text-xl font-semibold mb-3">Características</h2>
-            <p className="text-muted-foreground">{product.caracteristicas}</p>
-          </Card>
-        </div>
+      <h2 className="text-2xl font-bold mb-6">Our Products</h2>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+        {products.map((product) => (
+          <ProductCard key={product.codigo_produto} product={product} />
+        ))}
       </div>
     </main>
   );
