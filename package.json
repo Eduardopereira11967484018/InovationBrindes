@@ -31,5 +31,10 @@
   },
   "devDependencies": {
     "@types/next": "^8.0.7"
-  }
+  },
+  
+  "engines": {
+  "node": "16.x"
+}
+
 }
