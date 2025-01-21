@@ -63,6 +63,7 @@ A aplicação estará disponível em `http://localhost:3000`.
 
 ## Deploy
 
+https://inovation-brindes-bjdu.vercel.app/
 Após a implementação, a aplicação pode ser implantada na Vercel ou em outra plataforma de sua escolha. 
 
 ## Contribuição
